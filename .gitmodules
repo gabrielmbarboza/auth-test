@@ -1,0 +1,3 @@
+[submodule "auth-api"]
+	path = auth-api
+	url = git@github.com:gabrielmbarboza/auth-api.git
