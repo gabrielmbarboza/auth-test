@@ -86,8 +86,14 @@ Using Docker and docker-compose, just run the following command.
 docker compose up
 ```
 
-and access the following url in your broswer.
+Access the following url in your broswer.
 
 ```bash
 http://0.0.0.0:3001
+```
+
+and use the this user credentials 
+```
+User: jane@example.com 
+Password: 123
 ```
