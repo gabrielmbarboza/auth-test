@@ -1,0 +1,25 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+auth-app/node_modules
+auth-app/.pnp
+auth-app/.pnp.js
+
+# testing
+auth-app/coverage
+
+# production
+auth-app/build
+
+# misc
+.DS_Store
+auth-app/.env.local
+auth-app/.env.development.local
+auth-app/.env.test.local
+auth-app/.env.production.local
+
+auth-app/npm-debug.log*
+auth-app/yarn-debug.log*
+auth-app/yarn-error.log*
+
+tmp

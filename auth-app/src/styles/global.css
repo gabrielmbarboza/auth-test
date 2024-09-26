@@ -1,0 +1,67 @@
+:root {
+  --primary-color: #4494F8;
+  --secondary-color: #F8A844;
+  --background-color: #EEF844;
+  --text-color: #212429;
+  --header-font: Roboto, Verdana, Tahoma, sans-serif;
+  --body-font: Roboto, Verdana, Tahoma, sans-serif;
+  --border-radius: 4px;
+  --padding: 16px;
+  --margin: 16px;
+}
+
+header {
+  @apply shadow-md bg-[var(--primary-color)];
+}
+
+main {
+  @apply container mx-auto px-4 py-8;
+}
+
+.header-title {
+  @apply text-2xl font-bold text-white;
+}
+
+.common-container {
+  @apply min-h-screen bg-gray-100;
+}
+
+.header-container {
+  @apply mx-auto px-4 py-4 flex justify-between items-center;
+}
+
+.profile-menu-button {
+  @apply flex items-center space-x-2 text-white hover:text-gray-200 focus:outline-none;
+}
+
+.profile-menu-button .button-size {
+  @apply w-6 h-6;
+}
+
+.profile-menu {
+  @apply absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-10;
+}
+
+.profile-menu-item {
+  @apply block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100;
+}
+
+.search-input-box {
+  @apply flex items-center max-w-md mx-auto bg-white rounded-lg overflow-hidden;
+}
+
+.search-input-box .search-input {
+  @apply w-full px-4 py-2 text-gray-700 focus:outline-none;
+}
+
+.search-input-box .search-button {
+  @apply flex items-center justify-center px-4 py-2 bg-gray-200 text-gray-700 hover:bg-gray-300 focus:outline-none;
+}
+
+.content-container {
+  @apply grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6
+}
+
+.home-button {
+  @apply rounded-md bg-[var(--primary-color)] px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-[var(--secondary-color)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--primary-color)];
+}

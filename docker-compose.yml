@@ -1,0 +1,58 @@
+services:
+  auth_app:
+    tty: true
+    image: authapp
+    build:
+      context: ./auth-app
+      dockerfile: Dockerfile.dev
+    command: npm run dev
+    volumes:
+      - ./auth-app:/usr/src/app
+    ports:
+      - 3001:3000
+    # depends_on:
+    #   - auth_api
+    networks:
+      - my_network
+
+  # db:
+  #   image: postgres:16-alpine
+  #   restart: always
+  #   volumes:
+  #     - ./tmp/db:/var/lib/postgresql/data
+  #   env_file:
+  #     - ./auth-api/.env/database
+  #   networks:
+  #     - my_network
+  #   ports:
+  #     - 5432:5432
+
+  # auth_api:
+  #   container_name: auth_api
+  #   build:
+  #     context: ./auth-api
+  #     dockerfile: Dockerfile.dev
+  #   working_dir: /usr/src/app
+  #   command: sh -c "rm -f tmp/pids/server.pid &&
+  #     bundle exec rails db:create &&
+  #     bundle exec rails db:migrate &&
+  #     bundle exec rails s -p 3000 -b '0.0.0.0'"
+  #   env_file:
+  #     - ./auth-api/.env/database
+  #     - ./auth-api/.env/app
+  #   volumes:
+  #     - ./auth-api:/usr/src/app
+  #     - ./auth-api/tmp/gem_cache:/gems
+  #   ports:
+  #     - "3000:3000"
+  #   networks:
+  #     - my_network
+  #   depends_on:
+  #     - db
+
+# volumes:
+#   gem_cache:
+
+networks:
+  my_network:
+    driver: bridge

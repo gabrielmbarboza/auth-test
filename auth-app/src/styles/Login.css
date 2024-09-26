@@ -1,0 +1,108 @@
+.container-login {
+  @apply relative w-full h-screen flex;
+}
+
+.input-login {
+  @apply w-[200px];
+}
+
+.img-box {
+  @apply w-6/12 h-full bg-[color:var(--primary-color)] p-5;
+}
+
+.img-box img {
+  @apply w-full h-full;
+}
+
+.content-box {
+  @apply flex justify-center items-center w-6/12 h-full;
+}
+
+.content-box .form-box {
+  @apply w-6/12;
+}
+
+.content-box .form-box .ul {
+  @apply flex items-center justify-center;
+}
+
+.content-box .form-box .ul li {
+  @apply w-[60px] h-[60px] flex justify-center items-center cursor-pointer transition-[0.3s] mx-[7px] my-0 rounded-[50%];
+  list-style: none;
+}
+
+.content-box .form-box .ul li:hover {
+  background: #e4e4e4;
+}
+.form-box .ul li img {
+  @apply w-10;
+}
+
+.content-box .form-box h2 {
+  @apply text-[#32324f] font-semibold text-[2em] uppercase text-center mb-[15px];
+}
+.content-box .form-box .input-box {
+  @apply mb-5;
+}
+
+.content-box .form-box .input-box input {
+  @apply w-full font-normal text-[17px] text-[#32324f] bg-[#ecf2f7] p-2.5 rounded-[5px] border-[none];
+  outline: none;
+}
+
+.content-box .form-box .input-box span {
+  @apply text-base inline-block text-[#32324f] font-normal mb-[5px];
+}
+
+.content-box .form-box .input-box input::placeholder {
+  @apply text-[#a9adb6];
+}
+
+.content-box .form-box .input-box input[type="submit"] {
+  @apply text-white font-medium cursor-pointer text-xl transition-[0.3s] border-[none] bg-[color:var(--primary-color)];
+  outline: none;
+}
+
+.content-box .form-box .input-box input[type="submit"]:hover {
+  background: var(--secondary-color);
+}
+
+.content-box .form-box .input-box p {
+  @apply text-[#32324f];
+}
+
+.content-box .form-box .input-box p a {
+  @apply text-[#4aa4ee] hover:text-[#7048e8];
+}
+
+.content-box .form-box h3 {
+  @apply text-[#607d8b] no-underline font-medium text-center text-[22px] mt-10 mb-[15px] mx-0;
+}
+
+@media (max-width: 868px) {
+  .container-login .img-box {
+    @apply hidden;
+  }
+
+  .container-login .content-box {
+    @apply w-full;
+  }
+
+  .container-login .content-box .form-box {
+    @apply w-full m-[50px] p-10;
+    background: white;
+  }
+
+  .container-login .content-box .form-box h3 {
+    @apply mt-[30px] mb-2.5 mx-0;
+  }
+}
+
+@media (max-width: 450px) {
+  .container-login .content-box .form-box .remember {
+    @apply flex-wrap;
+  }
+  .container-login .content-box .form-box .remember a {
+    @apply mt-5;
+  }
+}
