@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { FiSearch, FiEdit, FiTrash, FiLogOut, FiUser, FiBell } from "react-icons/fi";
-import { IApiResponse, User } from "../types";
+import { User } from "../types";
 import { ToastContainer, toast } from 'react-toastify';
 import { Api } from "../services/api";
 import { useAuth } from "../hooks/useAuth";
@@ -16,18 +16,11 @@ function UserList() {
   const navigate = useNavigate();
   const auth = useAuth();
 
-  // const users = [
-  //   { id: 1, username: "john_doe", email: "john@example.com", avatar: "https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80" },
-  //   { id: 2, username: "jane_smith", email: "jane@example.com", avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80" },
-  //   { id: 3, username: "mike_johnson", email: "mike@example.com", avatar: "https://images.unsplash.com/photo-1599566150163-29194dcaad36?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80" },
-  //   { id: 4, username: "sarah_williams", email: "sarah@example.com", avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80" },
-  // ];
-
   useEffect(() => {
-    const fetchCountries = async () => {
+    const fetchUsers = async () => {
       try {
-        const response = await Api.get<IApiResponse>('api/v1/users');
-        const users = response.data.data;
+        const response = await Api.get<User[]>('api/v1/users');
+        const users = response.data;
 
         setUsers(users);
         setFilteredUsers(users);
@@ -36,7 +29,7 @@ function UserList() {
       }
     };
 
-    fetchCountries();
+    fetchUsers();
   }, []);
 
   useEffect(() => {

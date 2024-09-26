@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { getUserFromCookie } from '../context/AuthProvider/utils';
+import { getUserCookies } from '../context/AuthProvider/utils';
 import { InternalAxiosRequestConfig } from 'axios';
 import { AxiosError } from 'axios';
 
@@ -9,7 +9,8 @@ export const Api = axios.create({
 
 Api.interceptors.request.use(
   (config: InternalAxiosRequestConfig): InternalAxiosRequestConfig => {
-    const user = getUserFromCookie();
+    const user = getUserCookies();
+
     config.headers.Authorization = `Bearer ${user?.token}`;
     return config;
   },

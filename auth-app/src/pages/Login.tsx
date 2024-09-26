@@ -22,7 +22,7 @@ function Login() {
     try {
       await auth.login(email, password)
 
-      navigate('/explorer')
+      navigate('/users')
     } catch (error) {
       toast.error("Opa! Credenciais inválidas");
     }

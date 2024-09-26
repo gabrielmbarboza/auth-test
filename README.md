@@ -50,6 +50,16 @@ Cloning the API repository
 git submodule init
 ```
 
+Replaces or create new files from files with the `.sample` removing the extension and then replace the environment variables in **.env** directory in the **auth-api** submodule.
+
+```bash
+cp app.sample app
+```
+
+```bash
+cp database.sample database
+```
+
 Building the project
 
 ```bash
@@ -62,13 +72,7 @@ Running the Bundler
 docker compose run --rm auth_api bundle install
 ```
 
-Preparing to use the API
-
-```bash
-docker compose run --rm auth_api bin/rails db:create
-```
-
-Migrating the Auth API database
+Preparing and migrating the Auth API database
 
 ```bash
 docker compose run --rm auth_api bin/rails db:setup
