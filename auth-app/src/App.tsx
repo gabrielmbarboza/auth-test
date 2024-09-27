@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-
+import { ToastContainer } from 'react-toastify';
 import Home from "./pages/Home";
 import UserList from "./pages/UserList";
 import Login from "./pages/Login";
@@ -10,6 +10,19 @@ import NotFound from "./pages/NotFound";
 
 function App() {
   return (
+    <>
+    <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"/><ToastContainer />
+
     <AuthProvider>
       <BrowserRouter>
         <Routes>
@@ -27,6 +40,7 @@ function App() {
         </Routes>
       </BrowserRouter>
     </AuthProvider>
+    </>
   );
 }
 

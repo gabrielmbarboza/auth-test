@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import "../styles/Login.css";
 import loginImageMain from "../assets/img/login.svg";
@@ -16,31 +16,16 @@ function Login() {
   const navigate = useNavigate();
   const auth = useAuth();
 
-  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
-    try {
-      await auth.login(email, password)
-
-      navigate('/users')
-    } catch (error) {
-      toast.error("Opa! Credenciais inválidas");
-    }
+    auth.login(email, password)
+    .then(() => navigate('/users'))
+    .catch(error => { toast.error("Oops! Your credentials are invalid") });
   }
 
   return (
     <>
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"/><ToastContainer />
       <div className="container-login">
         <div className="img-box">
           <img src={loginImageMain} alt="Login"/>
@@ -50,22 +35,17 @@ function Login() {
             <h2>Login</h2>
             <form onSubmit={handleSubmit}>
               <InputText name="email" label="Email" type="email" placeholder="email@host.com" onChangeState={setEmail}/>
-              <div className="input-box">
-                <span>Senha</span>
-                <input name="password" className="input-login" type="password" placeholder="informe sua senha" onChange={e => {
-                    setPassword(e.target.value)
-                }}/>
-              </div>
+              <InputText name="password" label="Password" type="password" placeholder="enter your password" onChangeState={setPassword}/>
               <div className="input-box">
                 <input className="input-login" type="submit" value="Entrar" />
               </div>
               <div className="input-box">
                 <p>
-                  Não Tem Uma Conta? <a href="/signup">Inscreva-se</a>
+                  Don't have an account? <a href="/signup">Sign up</a>
                 </p>
               </div>
             </form>
-            <h3>Logar Com</h3>
+            <h3>Log in with</h3>
             <ul className="ul">
               <li>
                 <img src={googleLogo} alt="google"/>

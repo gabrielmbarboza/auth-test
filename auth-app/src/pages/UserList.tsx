@@ -9,7 +9,7 @@ import {
   FiBell,
 } from "react-icons/fi";
 import { User } from "../types";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import { Api } from "../services/api";
 import { useAuth } from "../hooks/useAuth";
 
@@ -31,7 +31,7 @@ function UserList() {
         setUsers(users);
         setFilteredUsers(users);
       } catch (error) {
-        toast.error("Opa! Credenciais inválidas");
+        toast.error("Oops! Your credentials are invalid");
       }
     };
 
@@ -52,6 +52,17 @@ function UserList() {
     counter > 0 && setTimeout(() => setCounter(counter - 1), 1000);
   }, [counter]);
 
+  useEffect(() => {
+    if(counter === 0) {
+      toast.warning("You will soon be disconnected",  {
+        onClose: () => {
+          auth.logout();
+          navigate("/login");
+        },
+      })
+    }
+  }, [counter, auth, navigate]);
+
   const handleUserClick = (userId: number) => {
     console.log(`User ${userId} clicked`);
   };
@@ -67,42 +78,29 @@ function UserList() {
 
   return (
     <>
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-      />
-      <ToastContainer />
       <header>
         <div className="container header-container">
           <h1 className="header-title">User List</h1>
           <div className="relative">
             <button onClick={toggleProfileMenu} className="profile-menu-button">
               <FiUser className="button-size" />
-              <span>Perfil</span>
+              <span>Profile</span>
             </button>
             {isProfileMenuOpen && (
               <div className="profile-menu">
                 <a href="#" className="profile-menu-item">
-                  Editar Perfil
+                  Edit Profile
                 </a>
                 <a href="#" className="profile-menu-item">
                   <div className="flex items-center">
                     <FiBell className="mr-2" />
-                    Notificações
+                    Notifications
                   </div>
                 </a>
                 <a href="#" className="profile-menu-item">
                   <div className="flex items-center" onClick={handleLogout}>
                     <FiLogOut className="mr-2" />
-                    Sair
+                    Logout
                   </div>
                 </a>
               </div>
@@ -112,8 +110,9 @@ function UserList() {
       </header>
       <main>
         <div className="container mx-auto px-4 py-8">
-          <div className="mb-6 relative text-right text-gray-600">
-            Remaining time: {counter}
+          <div className="mb-6 flex justify-end gap-1 text-gray-600">
+            <div>Remaining time:</div>
+            <div className="w-5 text-right">{counter}</div>
           </div>
           <div className="mb-6 relative">
             <input
